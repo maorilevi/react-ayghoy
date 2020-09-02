@@ -1,0 +1,31 @@
+{
+  "cards":  [{
+    "title": "First Widget",
+    "isRouter": false,
+    "count": 33,
+    "fontColor": "#fff",
+    "color": "#4361a0"
+  },{
+    "title": "Second Widget",
+    "count": 46,
+    "isRouter": false,
+    "fontColor": "#fff",
+    "color": "#ecb63c"
+  },{
+    "title": "To Feature",
+    "count": null,
+    "fontColor": "#fff",
+    "isRouter": true,
+    "routerTo": "feature",
+    "color": null
+  }],
+  "lineBar": [
+    {
+      "title": "First Widget",
+      "data": [18, 5]
+    }, {
+      "title": "Second Widget",
+      "data": [18, 51]
+    }
+  ]
+}

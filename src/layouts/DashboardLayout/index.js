@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 import TopBar from './TopBar';
+import Footer from "../Footer/footer";
+import { connect } from 'react-redux'
+import * as actions from "../../store/actions/DashboardBuilder";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
   contentContainer: {
     display: 'flex',
     flex: '1 1 auto',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    paddingBottom: '60px'
   },
   content: {
     flex: '1 1 auto',
@@ -32,13 +36,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const DashboardLayout = () => {
+const DashboardLayout = (state) => {
   const classes = useStyles();
-  const [isMobileNavOpen, setMobileNavOpen] = useState(false);
-
+  const [setMobileNavOpen] = useState(false);
+  state.onInitDashboard();
   return (
     <div className={classes.root}>
-      <TopBar onMobileNavOpen={() => setMobileNavOpen(true)} />
+      <TopBar onMobileNavOpen={() => setMobileNavOpen(true)} cards={state.cards}/>
       <div className={classes.wrapper}>
         <div className={classes.contentContainer}>
           <div className={classes.content}>
@@ -46,8 +50,20 @@ const DashboardLayout = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };
 
-export default DashboardLayout;
+const mapStateToProps = state => {
+  return {
+    cards: state.dashboard.cards,
+    lineBar: state.dashboard.lineBar
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    onInitDashboard: () => dispatch(actions.initDashboardData()),
+  }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardLayout);

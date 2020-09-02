@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
 
 import {
-  Avatar,
-  Box,
   Card,
   CardContent,
   Grid,
@@ -31,47 +29,103 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1)
   }
 }));
+function cardBody(data) {
+  const titleColor = {
+    color: data.color,
+    fontSize: '30px',
+    textAlign: 'center',
+    width: '100%'
+  };
+  const gridStyle = {
+    width: '100%'
+  };
+  const redirectGridStyle = {
+    width: '100%',
+    background: '#9c98e7'
+  }
+  const counterStyle = {
+    textAlign: 'center',
+    width: '100%',
+    fontSize: '50px',
+    fontWeight: '900',
+    borderTop: '2px solid lightgray',
+    color: '#7b7b7b',
+    paddingTop: '12px'
+  };
+  const redirectStyle = {
+    color: '#fff',
+    fontSize: '30px',
+    textAlign: 'center',
+    width: '100%',
+    display: 'inline',
+    height: '100%',
+    lineHeight: '4',
+    fontFamily: 'sans-serif',
+    fontWeight: '100',
+  };
+  const iconStyle = {
+    backgroundImage: 'url(./static/business.svg)'
+  }
+  if(data.isRouter) {
+    return <Grid
+        style={redirectGridStyle}
+        item><RouterLink to="/app/feature" style={{display: 'flex', alignItems: 'flex-end',width: '100%'}}>
+      <div
+          style={redirectStyle}
+          variant="h6">
+        {data.title}
+      </div>
+      <div style={{
+        display: 'inline'
+      }}>
+        <img
+            src='/static/business.svg'
+            style={{
+              margin: '0 22px',
+              verticalAlign: 'middle',
+              width: '100px',
+              height: '100px',
+              backgroundSize: 'cover'
+            }}
+        />
+      </div>
 
+    </RouterLink></Grid>
+  } else {
+    return <Grid
+        style={gridStyle}
+        item>
+      <Typography
+          style={titleColor}
+          color="textSecondary"
+          gutterBottom
+          variant="h6">
+        {data.title}
+      </Typography>
+      <Typography
+          style={counterStyle}
+          color="textPrimary"
+          variant="h1">{data.count}</Typography></Grid>;
+  }
+
+};
 const Budget = ({data, className, ...rest }) => {
   const classes = useStyles();
-  const cardStyle = {
-    background: data.isRouter ? '#fff' : data.color
-  };
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}>
-      <CardContent
-          style={cardStyle}>
-        <Grid
-          container
-          justify="space-between"
-          spacing={3}>
-          <Grid item>
+      <Card
+          style={data.isRouter ? {background: '#9c98e7'} : {}}
+          className={clsx(classes.root, className)}
+          {...rest}>
+        <CardContent>
+          <Grid
+              container
+              justify="space-between">
             {
-
-                data.isRouter ? <RouterLink to="/app/feature">
-                        <Typography
-                        color="textSecondary"
-                        gutterBottom
-                        variant="h6">
-                        {data.title}
-                        </Typography>
-                        <Typography
-                        color="textPrimary"
-                        variant="h1">
-                        {data.count}
-                        </Typography>
-                      </RouterLink> : null
+              cardBody(data)
             }
-              <Typography
-              color="textSecondary"
-              gutterBottom
-              variant="h6">{data.title}</Typography><Typography color="textPrimary" variant="h1">{data.count}</Typography>
           </Grid>
-        </Grid>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
   );
 };
 

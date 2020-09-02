@@ -5,13 +5,13 @@ import GlobalStyles from './components/GlobalStyles';
 import './mixins/chartjs';
 import routes from './routes';
 import theme from './theme';
-const App = () => {
 
+const App = () => {
     const routing = useRoutes(routes);
     return (
         <ThemeProvider theme={theme}>
-            <GlobalStyles />
-            {routing}
+                <GlobalStyles />
+                {routing}
         </ThemeProvider>
     );
 };

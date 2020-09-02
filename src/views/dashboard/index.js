@@ -1,65 +1,65 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
   Container,
-  Grid,
-  makeStyles
+  Grid
 } from '@material-ui/core';
 import Page from '../../components/Page';
 import Budget from './Budget';
 import Sales from './Sales';
+import * as actions from "../../store/actions/DashboardBuilder";
+import {connect} from "react-redux";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    minHeight: '100%',
-    paddingBottom: theme.spacing(3),
-    paddingTop: theme.spacing(3)
+
+
+class Dashboard extends Component {
+
+  state = {
+    purchasing: false
   }
-}));
 
-const Dashboard = () => {
-  const classes = useStyles();
-  const budgets = [{
-    title: 'a',
-    isRouter: false,
-    count: 200,
-    fontColor: '#fff',
-    color: '#4361a0'
-  },{
-    title: 'b',
-    count: 200,
-    isRouter: false,
-    fontColor: '#fff',
-    color: '#ecb63c'
-  },{
-    title: 'to feature',
-    count: null,
-    fontColor: '#000',
-    isRouter: true,
-    routerTo: 'feature',
-    color: null
-  }];
-  return (
-    <Page
-      className={classes.root}
-      title="Dashboard"
-    >
-      <Container maxWidth={false}>
-        <Grid container spacing={3}>
-          {
-            budgets.map(b => {
-              return <Grid item lg={4} sm={6} xl={4} xs={12}>
-                <Budget data={b}/>
+  componentDidMount () {
+    this.props.onInitDashboard();
+  }
+  render() {
+
+    return (
+        <Page
+            title="Dashboard"
+        >
+          <Container maxWidth={false}>
+            <Grid container spacing={3} style={{
+              marginTop: '2px'
+            }}>
+              {
+                !!this.props && !!this.props.cards ? this.props.cards.map(b => {
+                  return (
+                      <Grid item lg={4} sm={6} xl={4} xs={12}>
+                        <Budget data={b}/>
+                      </Grid>)
+                }) : null
+              }
+              <Grid item lg={12} md={12} xl={12} xs={12}>{
+                !!this.props && !!this.props.cards ?
+                    <Sales barData={[{color: this.props.cards[0].color}, {color: this.props.cards[1].color}]}/>
+                    : null
+              }
               </Grid>
-            })
-          }
-          <Grid item lg={12} md={12} xl={12} xs={12}>
-            <Sales barData={[{color: budgets[0].color}, {color: budgets[1].color}]}/>
-          </Grid>
-        </Grid>
-      </Container>
-    </Page>
-  );
+            </Grid>
+          </Container>
+        </Page>
+    );
+  }
+};
+const mapStateToProps = state => {
+  return {
+    cards: state.dashboard.cards,
+    lineBar: state.dashboard.lineBar
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    onInitDashboard: () => dispatch(actions.initDashboardData()),
+  }
 };
 
-export default Dashboard;
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
