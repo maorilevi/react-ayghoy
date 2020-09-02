@@ -53,15 +53,15 @@ function cardBody(data) {
     paddingTop: '12px'
   };
   const redirectStyle = {
-    color: '#fff',
+
+    color: 'rgb(255, 255, 255)',
     fontSize: '30px',
     textAlign: 'center',
-    width: '100%',
-    display: 'inline',
-    height: '100%',
-    lineHeight: '4',
+    width: '60%',
     fontFamily: 'sans-serif',
     fontWeight: '100',
+    whiteSpace: 'pre',
+    alignSelf: 'center'
   };
   const iconStyle = {
     backgroundImage: 'url(./static/business.svg)'
@@ -70,25 +70,18 @@ function cardBody(data) {
     return <Grid
         style={redirectGridStyle}
         item><RouterLink to="/app/feature" style={{display: 'flex', alignItems: 'flex-end',width: '100%'}}>
-      <div
-          style={redirectStyle}
-          variant="h6">
-        {data.title}
-      </div>
-      <div style={{
-        display: 'inline'
-      }}>
-        <img
+        <Grid>
+          <Grid  item lg={5} md={6} xl={6} xs={12}><h1>{data.title}</h1></Grid>
+          <Grid  item lg={5} md={6} xl={6} xs={12}>
+          <img
             src='/static/business.svg'
             style={{
-              margin: '0 22px',
-              verticalAlign: 'middle',
-              width: '100px',
-              height: '100px',
+              width: '100%',
+              height: '100%',
               backgroundSize: 'cover'
-            }}
-        />
-      </div>
+            }}/>
+          </Grid>
+        </Grid>
 
     </RouterLink></Grid>
   } else {
