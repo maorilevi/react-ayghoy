@@ -70,14 +70,14 @@ function cardBody(data) {
     return <Grid
         style={redirectGridStyle}
         item><RouterLink to="/app/feature" style={{display: 'flex', alignItems: 'flex-end',width: '100%'}}>
-        <Grid>
-          <Grid  item lg={5} md={6} xl={6} xs={12}><h1>{data.title}</h1></Grid>
-          <Grid  item lg={5} md={6} xl={6} xs={12}>
+        <Grid style={{width: '100%'}}>
+          <Grid  item lg={10} md={12} xl={10} xs={12} style={{fontFamily: 'sans-serif',alignSelf: 'center'}}><h1>{data.title}</h1></Grid>
+          <Grid  item lg={2} md={12} xl={2} xs={12}>
           <img
             src='/static/business.svg'
             style={{
-              width: '100%',
-              height: '100%',
+              width: '100px',
+              height: '100px',
               backgroundSize: 'cover'
             }}/>
           </Grid>
