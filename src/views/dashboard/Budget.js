@@ -52,37 +52,41 @@ function cardBody(data) {
     color: '#7b7b7b',
     paddingTop: '12px'
   };
+  const counterStyleRedirect = {
+    textAlign: 'center',
+    width: '100%',
+    fontSize: '50px',
+    fontWeight: '900',
+    borderTop: '2px solid lightgray',
+    color: 'rgb(255, 255, 255)',
+    paddingTop: '12px'
+  };
   const redirectStyle = {
 
     color: 'rgb(255, 255, 255)',
     fontSize: '30px',
     textAlign: 'center',
-    width: '60%',
+    width: '100%',
     fontFamily: 'sans-serif',
     fontWeight: '100',
     whiteSpace: 'pre',
     alignSelf: 'center'
   };
-  const iconStyle = {
-    backgroundImage: 'url(./static/business.svg)'
-  }
   if(data.isRouter) {
     return <Grid
         style={redirectGridStyle}
-        item><RouterLink to="/app/feature" style={{display: 'flex', alignItems: 'flex-end',width: '100%'}}>
-        <Grid style={{width: '100%'}}>
-          <Grid  item lg={10} md={12} xl={10} xs={12} style={{fontFamily: 'sans-serif',alignSelf: 'center'}}><h1>{data.title}</h1></Grid>
-          <Grid  item lg={2} md={12} xl={2} xs={12}>
-          <img
-            src='/static/business.svg'
-            style={{
-              width: '100px',
-              height: '100px',
-              backgroundSize: 'cover'
-            }}/>
-          </Grid>
-        </Grid>
-
+        item><RouterLink to="/app/feature">
+      <Typography
+          style={redirectStyle}
+          color="textSecondary"
+          gutterBottom
+          variant="h6">
+        FEATURE SCREEN
+      </Typography>
+      <Typography
+          style={counterStyleRedirect}
+          color="textPrimary"
+          variant="h1">GOT TO FEATURE</Typography>
     </RouterLink></Grid>
   } else {
     return <Grid

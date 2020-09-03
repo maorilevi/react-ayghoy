@@ -24,6 +24,14 @@ const useStyles = makeStyles(() => createStyles({
     '#root': {
       height: '100%',
       width: '100%'
+    },
+    '.widgetClass': {
+      display: 'none'
+    },
+    '@media only screen and (min-width: 768px)': {
+      '.widgetClass':{
+        display: 'inline'
+      }
     }
   }
 }));

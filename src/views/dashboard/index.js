@@ -33,7 +33,7 @@ class Dashboard extends Component {
               {
                 !!this.props && !!this.props.cards ? this.props.cards.map(b => {
                   return (
-                      <Grid item lg={4} sm={4} xl={4} xs={12}>
+                      <Grid item lg={4} sm={12} xl={4}  md={4} xs={12}>
                         <Budget data={b}/>
                       </Grid>)
                 }) : null

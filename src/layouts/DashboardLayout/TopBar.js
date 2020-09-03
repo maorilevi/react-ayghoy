@@ -62,10 +62,10 @@ const TopBar = ({className, onMobileNavOpen, cards,isDashboard, ...rest}) => {
           feature
         </RouterLink>
         {
-          !!cards && !isDashboard ? <Box>
-            <Hidden only={['sm', 'xm']}>
-              <span style={cardStyle}>{cards[0].title}</span>
-              <span style={cardStyle}>{cards[1].title}</span>
+          !!cards && !isDashboard ? <Box className={'widgetClass'}>
+            <Hidden only={['sm', 'xm']} >
+              <span style={cardStyle}>{cards[0].title} ({cards[0].count})</span>
+              <span style={cardStyle}>{cards[1].title} ({cards[1].count})</span>
             </Hidden>
           </Box> : null
         }
