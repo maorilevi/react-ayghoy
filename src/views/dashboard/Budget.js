@@ -55,11 +55,13 @@ function cardBody(data) {
   const counterStyleRedirect = {
     textAlign: 'center',
     width: '100%',
-    fontSize: '50px',
+    fontSize: '40px',
     fontWeight: '900',
     borderTop: '2px solid lightgray',
     color: 'rgb(255, 255, 255)',
-    paddingTop: '12px'
+    paddingTop: '12px',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'
   };
   const redirectStyle = {
 
@@ -69,7 +71,6 @@ function cardBody(data) {
     width: '100%',
     fontFamily: 'sans-serif',
     fontWeight: '100',
-    whiteSpace: 'pre',
     alignSelf: 'center'
   };
   if(data.isRouter) {
